@@ -1,75 +1,68 @@
-# React + TypeScript + Vite
+# Notes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern fullstack sticky notes experience with Appwrite backend power.
 
-Currently, two official plugins are available:
+## 🚀 What it is
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A sleek note-taking playground built with:
 
-## React Compiler
+- **React 19** for the frontend
+- **Vite** for fast development and build
+- **Appwrite** for backend, auth, and  database storage
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## ✨ Key features
 
-Note: This will impact Vite dev & build performances.
+- **Production database**: All notes are stored in a live Appwrite database.
+- **Draggable notes**: Move notes freely across the screen using drag and drop.
+- **Autosave**: Note content and position are saved automatically as you edit.
+- **Color picker**: Customize the color of each note instantly.
 
-## Expanding the ESLint configuration
+## 🧩 Why it’s cool
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This app is made for people who want a polished, interactive note board with persistent storage and instant updates. It’s ideal for:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- quick brainstorming sessions
+- visual planning
+- maintaining notes across devices
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Setup
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js `v24.15.0`
+- npm `v11.12.1`
+
+### 1. Install dependencies
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Configure Appwrite
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Set up an Appwrite project and create the following:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- a database
+- a notes collection
+- a document structure for note content, position, and color
+
+Then add your Appwrite endpoint and project ID to your environment or config.
+
+### 3. Run locally
+
+```bash
+npm run dev
 ```
+
+Open the app at:
+
+```bash
+http://localhost:5173
+```
+
+## 📦 Available scripts
+
+- `npm run dev` — start the development server
+- `npm run build` — build the app for production
+- `npm run preview` — locally preview the production build
+- `npm run lint` — run ESLint
