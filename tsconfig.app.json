@@ -17,7 +17,8 @@
     "ignoreDeprecations": "6.0",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@cards/*": ["src/features/cards/*"]
     },
 
     /* Linting */

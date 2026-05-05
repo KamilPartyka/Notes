@@ -1,6 +1,6 @@
 import { Trash } from '@/shared/icons/Trash';
 import { useRef } from 'react';
-import { useAutoGrow } from '../hooks/useAutoGrow';
+import { useAutoGrow } from '@cards/hooks/useAutoGrow';
 
 interface NoteCardProps {
   note: {

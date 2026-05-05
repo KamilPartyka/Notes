@@ -9,6 +9,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@cards': path.resolve(__dirname, 'src/features/cards'),
     },
   },
   plugins: [
