@@ -1,6 +1,6 @@
 import { Trash } from '@/shared/icons/Trash';
-import { useRef } from 'react';
 import { useAutoGrow } from '@cards/hooks/useAutoGrow';
+import { usePosition } from '@cards/hooks/usePosition';
 
 interface NoteCardProps {
   note: {
@@ -14,15 +14,17 @@ interface NoteCardProps {
 export const NoteCard = ({ note }: NoteCardProps) => {
   const body = JSON.parse(note.body);
   const colors = JSON.parse(note.colors);
-  const position = JSON.parse(note.position);
 
-  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
-
-  const { autoGrow } = useAutoGrow({ textAreaRef });
+  const { autoGrow, textAreaRef } = useAutoGrow();
+  const { position, cardRef, handleMouseDown, isDragging } = usePosition({
+    initialPosition: JSON.parse(note.position),
+  });
 
   return (
     <div
-      className="absolute w-100 cursor-pointer rounded-[5px] shadow-md"
+      className="absolute w-100 rounded-[5px] shadow-md"
+      ref={cardRef}
+      onMouseDown={handleMouseDown}
       style={{
         backgroundColor: colors.colorBody,
         left: `${position.x}px`,
@@ -31,7 +33,7 @@ export const NoteCard = ({ note }: NoteCardProps) => {
     >
       {/* Header */}
       <div
-        className="flex items-center justify-between rounded-tl-[5px] rounded-tr-[5px] p-1.5"
+        className={`flex items-center justify-between rounded-tl-[5px] rounded-tr-[5px] p-1.5 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
         style={{ backgroundColor: colors.colorHeader }}
       >
         <Trash />

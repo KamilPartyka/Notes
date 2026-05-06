@@ -1,10 +1,12 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-interface UseAutoGrowProps {
-  textAreaRef: React.RefObject<HTMLTextAreaElement | null>;
-}
+/**
+ * Custom hook to automatically grow a textarea element based on its content.
+ * @returns An object containing the autoGrow function and a ref for the textarea element.
+ */
+export const useAutoGrow = () => {
+  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
-export const useAutoGrow = ({ textAreaRef }: UseAutoGrowProps) => {
   const autoGrow = useCallback(() => {
     if (!textAreaRef.current) return;
     const { current } = textAreaRef;
@@ -16,5 +18,5 @@ export const useAutoGrow = ({ textAreaRef }: UseAutoGrowProps) => {
     autoGrow();
   }, [textAreaRef, autoGrow]);
 
-  return { autoGrow };
+  return { autoGrow, textAreaRef };
 };
