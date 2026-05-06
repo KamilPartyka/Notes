@@ -1,6 +1,6 @@
 export const mocks = [
   {
-    $id: 1,
+    $id: 'asdadasd-asdasd',
     body: JSON.stringify(
       'Resources:\n- Book: "You Don\'t Know JS: Scope & Closures" by Kyle Simpson.\n\n- Online Course: "JavaScript Patterns" on Udemy.\n\n- Articles:\n"Understanding JavaScript Closures" on Medium.\n\n"Mastering JavaScript Modules" on Dev.to.'
     ),
@@ -13,7 +13,7 @@ export const mocks = [
     position: JSON.stringify({ x: 505, y: 10 }),
   },
   {
-    $id: 2,
+    $id: 'bsbbsb-sbbsb',
     body: JSON.stringify(
       'Resources:\n- Book: "You Don\'t Know JS: Scope & Closures" by Kyle Simpson.\n\n- Online Course: "JavaScript Patterns" on Udemy.\n\n- Articles:\n"Understanding JavaScript Closures" on Medium.\n\n"Mastering JavaScript Modules" on Dev.to.'
     ),
@@ -26,7 +26,7 @@ export const mocks = [
     position: JSON.stringify({ x: 305, y: 110 }),
   },
   {
-    $id: 3,
+    $id: 'cscscs-scscc',
     body: JSON.stringify(
       'Resources:\n- Book: "You Don\'t Know JS: Scope & Closures" by Kyle Simpson.\n\n- Online Course: "JavaScript Patterns" on Udemy.\n\n- Articles:\n"Understanding JavaScript Closures" on Medium.\n\n"Mastering JavaScript Modules" on Dev.to.'
     ),

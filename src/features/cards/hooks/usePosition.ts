@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UsePositionProps {
-  initialPosition?: { x: number; y: number };
+  initialPosition: { x: number; y: number };
 }
 
 /**
  * Custom hook to manage the position of a draggable element.
- * @param initialPosition - The initial position of the element (optional).
+ * @param initialPosition - The initial position of the element.
  * @returns An object containing the current position, a ref for the element, a mouse down handler, and a dragging state.
  */
 export const usePosition = ({ initialPosition }: UsePositionProps) => {
