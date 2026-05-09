@@ -1,8 +1,12 @@
 import { useLayering } from '@cards/hooks/useLayering';
-import { NoteCard } from './NoteCard';
+import { NoteCardContainer } from './NoteCardContainer';
 import type { Note } from '../api/useGetNotes';
 
-export const NotesList = ({ data }: { data: Note[] }) => {
+interface NotesListProps {
+  data: Note[];
+}
+
+export const NotesList = ({ data }: NotesListProps) => {
   const { zIndexById, bringToFront } = useLayering<string | number>(
     data.map((note) => note.$id)
   );
@@ -10,7 +14,7 @@ export const NotesList = ({ data }: { data: Note[] }) => {
   return (
     <div>
       {data.map((note) => (
-        <NoteCard
+        <NoteCardContainer
           key={note.$id}
           note={note}
           zIndex={zIndexById[note.$id] ?? 1}

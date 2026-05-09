@@ -1,45 +1,39 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { Trash } from '@/shared/icons/Trash';
-import { useAutoGrow } from '@cards/hooks/useAutoGrow';
-import { usePosition } from '@cards/hooks/usePosition';
 import type { Note } from '@/features/cards/api/useGetNotes';
-import { useDebounce } from '@/shared/hooks/useDebounce';
-import { useUpdateNoteMutation } from '@/features/cards/api/useUpdateNoteMutation';
-import { useUpdateNote } from '@/features/cards/hooks/useUpdateNote';
 
 interface NoteCardProps {
   note: Note;
-  onActivate: () => void;
+  position: { x: number; y: number };
+  isDragging: boolean;
   zIndex: number;
+  textAreaRef: React.RefObject<HTMLTextAreaElement | null>;
+  onHeaderMouseDown: (e: React.MouseEvent) => void;
+  onCardMouseDown: () => void;
+  onBodyChange: (body: string) => void;
+  onBodyInput: () => void;
+  cardRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export const NoteCard = memo(({ note, onActivate, zIndex }: NoteCardProps) => {
-  /**
-   * Position has to be passed to usePosition as initialPosition,
-   * because position is being updated in useUpdateNote and if we
-   * pass position directly to usePosition, it will cause position
-   * to reset on every update
-   */
-  const { positionX, positionY } = note;
-  const initialPosition = { x: positionX, y: positionY };
-
-  const [localNote, setLocalNote] = useState(note);
-  const debouncedNote = useDebounce(localNote, 1000);
-  const { mutate: updateNote } = useUpdateNoteMutation();
-  const { autoGrow, textAreaRef } = useAutoGrow();
-  const { position, cardRef, handleMouseDown, isDragging } = usePosition({
-    initialPosition,
-  });
-
-  useUpdateNote({ debouncedNote, note, updateNote, setLocalNote, position });
-
-  return (
+export const NoteCard = memo(
+  ({
+    note,
+    position,
+    isDragging,
+    zIndex,
+    textAreaRef,
+    onHeaderMouseDown,
+    onCardMouseDown,
+    onBodyChange,
+    onBodyInput,
+    cardRef,
+  }: NoteCardProps) => (
     <div
       className="absolute w-100 rounded-[5px] shadow-md"
       ref={cardRef}
-      onMouseDown={onActivate}
+      onMouseDown={onCardMouseDown}
       style={{
-        backgroundColor: localNote.colorBody,
+        backgroundColor: note.colorBody,
         left: `${position.x}px`,
         top: `${position.y}px`,
         zIndex,
@@ -47,9 +41,11 @@ export const NoteCard = memo(({ note, onActivate, zIndex }: NoteCardProps) => {
     >
       {/* Header */}
       <div
-        onMouseDown={handleMouseDown}
-        className={`flex items-center justify-between rounded-tl-[5px] rounded-tr-[5px] p-1.5 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-        style={{ backgroundColor: localNote.colorHeader }}
+        onMouseDown={onHeaderMouseDown}
+        className={`flex items-center justify-between rounded-tl-[5px] rounded-tr-[5px] p-1.5 ${
+          isDragging ? 'cursor-grabbing' : 'cursor-grab'
+        }`}
+        style={{ backgroundColor: note.colorHeader }}
       >
         <Trash />
       </div>
@@ -58,12 +54,12 @@ export const NoteCard = memo(({ note, onActivate, zIndex }: NoteCardProps) => {
         <textarea
           ref={textAreaRef}
           className="h-full w-full resize-none border-none bg-inherit text-base focus:outline-none"
-          style={{ color: localNote.colorText }}
-          value={localNote.body}
-          onChange={(e) => setLocalNote({ ...localNote, body: e.target.value })}
-          onInput={autoGrow}
+          style={{ color: note.colorText }}
+          value={note.body}
+          onChange={(e) => onBodyChange(e.target.value)}
+          onInput={onBodyInput}
         ></textarea>
       </div>
     </div>
-  );
-});
+  )
+);
