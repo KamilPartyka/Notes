@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { tablesDB, DATABASE_ID, NOTES_TABLE_ID } from '@/appwrite';
 import { USE_GET_NOTES_QUERY_KEY, type Note } from './useGetNotes';
 
-export const useUpdateNote = () => {
+export const useUpdateNoteMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

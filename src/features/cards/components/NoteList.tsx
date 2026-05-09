@@ -11,6 +11,7 @@ export const NotesList = ({ data }: { data: Note[] }) => {
     <div>
       {data.map((note) => (
         <NoteCard
+          key={note.$id}
           note={note}
           zIndex={zIndexById[note.$id] ?? 1}
           onActivate={() => bringToFront(note.$id)}
