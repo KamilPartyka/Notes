@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Trash } from '@/shared/icons/Trash';
 import { useAutoGrow } from '@cards/hooks/useAutoGrow';
 import { usePosition } from '@cards/hooks/usePosition';
-import type { Note } from '@cards/api/useNotes';
+import type { Note } from '@/features/cards/api/useGetNotes';
 
 interface NoteCardProps {
   note: Note;

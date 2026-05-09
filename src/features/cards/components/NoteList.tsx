@@ -1,6 +1,6 @@
 import { useLayering } from '@cards/hooks/useLayering';
 import { NoteCard } from './NoteCard';
-import type { Note } from '../api/useNotes';
+import type { Note } from '../api/useGetNotes';
 
 export const NotesList = ({ data }: { data: Note[] }) => {
   const { zIndexById, bringToFront } = useLayering<string | number>(

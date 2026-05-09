@@ -3,7 +3,7 @@ import { tablesDB, account, DATABASE_ID, NOTES_TABLE_ID } from '@/appwrite';
 import { Query } from 'appwrite';
 
 export interface Note {
-  $id: string | number;
+  $id: string;
   body: string;
   userId: string;
   colorHeader: string;
@@ -13,9 +13,11 @@ export interface Note {
   positionY: number;
 }
 
-export const useNotes = () => {
+export const USE_GET_NOTES_QUERY_KEY = 'GET_NOTES' as const;
+
+export const useGetNotes = () => {
   return useQuery({
-    queryKey: ['notes'],
+    queryKey: [USE_GET_NOTES_QUERY_KEY],
     queryFn: async () => {
       const user = await account.get();
 

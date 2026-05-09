@@ -36,6 +36,6 @@ export const mocks = [
       colorBody: '#FFF5DF',
       colorText: '#18181A',
     }),
-    position: JSON.stringify({ x: 605, y: 500 }),
+    position: JSON.stringify({ x: 605, y: 200 }),
   },
 ];

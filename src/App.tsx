@@ -20,7 +20,5 @@ export default function App() {
   //   );
   // }, []);
 
-  // console.dir(data);
-
   return <NotesPage />;
 }
