@@ -1,22 +1,11 @@
-import { mocks as notes } from '@/assets/mocks';
-import { NoteCard } from '@cards/components/NoteCard';
-import { useLayering } from '@cards/hooks/useLayering';
+import { useNotes } from '@/features/cards/api/useNotes';
+import { NotesList } from '@/features/cards/components/NoteList';
 
 export const NotesPage = () => {
-  const { zIndexById, bringToFront } = useLayering<string | number>(
-    notes.map((note) => note.$id)
-  );
+  const { data, isPending, isError } = useNotes();
 
-  return (
-    <div>
-      {notes.map((note) => (
-        <NoteCard
-          note={note}
-          key={note.$id}
-          zIndex={zIndexById[note.$id] ?? 1}
-          onActivate={() => bringToFront(note.$id)}
-        />
-      ))}
-    </div>
-  );
+  if (isPending) return <div>Loading...</div>;
+  if (isError) return <div>Error loading notes.</div>;
+
+  return <NotesList data={data} />;
 };

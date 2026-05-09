@@ -2,22 +2,19 @@ import { memo } from 'react';
 import { Trash } from '@/shared/icons/Trash';
 import { useAutoGrow } from '@cards/hooks/useAutoGrow';
 import { usePosition } from '@cards/hooks/usePosition';
+import type { Note } from '@cards/api/useNotes';
 
 interface NoteCardProps {
-  note: {
-    $id: string | number;
-    body: string;
-    colors: string;
-    position: string;
-  };
+  note: Note;
   onActivate: () => void;
   zIndex: number;
 }
 
 export const NoteCard = memo(({ note, onActivate, zIndex }: NoteCardProps) => {
-  const body = JSON.parse(note.body);
-  const colors = JSON.parse(note.colors);
-  const initialPosition = JSON.parse(note.position);
+  const { body, colorHeader, colorBody, colorText, positionX, positionY } =
+    note;
+  const colors = { colorHeader, colorBody, colorText };
+  const initialPosition = { x: positionX, y: positionY };
 
   const { autoGrow, textAreaRef } = useAutoGrow();
   const { position, cardRef, handleMouseDown, isDragging } = usePosition({
