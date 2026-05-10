@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { tablesDB, account, DATABASE_ID, NOTES_TABLE_ID } from '@/appwrite';
+import { tablesDB, DATABASE_ID, NOTES_TABLE_ID } from '@/appwrite';
 import { Query } from 'appwrite';
 
 export interface Note {
@@ -19,12 +19,12 @@ export const useGetNotes = () => {
   return useQuery({
     queryKey: [USE_GET_NOTES_QUERY_KEY],
     queryFn: async () => {
-      const user = await account.get();
+      // const user = await account.get();
 
       const response = await tablesDB.listRows({
         databaseId: DATABASE_ID,
         tableId: NOTES_TABLE_ID,
-        queries: [Query.equal('userId', user.$id)],
+        queries: [Query.equal('userId', import.meta.env.VITE_APPWRITE_MY_USER_ID)],
       });
 
       return response.rows;

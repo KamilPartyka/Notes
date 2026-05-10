@@ -25,8 +25,9 @@ export const NoteCardContainer = memo(
     const initialPosition = { x: positionX, y: positionY };
 
     const [localNote, setLocalNote] = useState(note);
-    const debouncedNote = useDebounce(localNote, 1000);
-    const { mutate: updateNote } = useUpdateNoteMutation();
+    const debouncedNote = useDebounce(localNote, 600);
+    const { mutate: updateNote, isPending: isUpdating } =
+      useUpdateNoteMutation();
     const { autoGrow, textAreaRef } = useAutoGrow();
     const { position, cardRef, handleMouseDown, isDragging } = usePosition({
       initialPosition,
@@ -46,6 +47,7 @@ export const NoteCardContainer = memo(
         onBodyChange={(body) => setLocalNote({ ...localNote, body })}
         onBodyInput={autoGrow}
         cardRef={cardRef}
+        isUpdating={isUpdating}
       />
     );
   }

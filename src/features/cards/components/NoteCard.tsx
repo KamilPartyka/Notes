@@ -12,6 +12,7 @@ interface NoteCardProps {
   onCardMouseDown: () => void;
   onBodyChange: (body: string) => void;
   onBodyInput: () => void;
+  isUpdating: boolean;
   cardRef: React.RefObject<HTMLDivElement | null>;
 }
 
@@ -26,6 +27,7 @@ export const NoteCard = memo(
     onCardMouseDown,
     onBodyChange,
     onBodyInput,
+    isUpdating,
     cardRef,
   }: NoteCardProps) => (
     <div
@@ -48,6 +50,9 @@ export const NoteCard = memo(
         style={{ backgroundColor: note.colorHeader }}
       >
         <Trash />
+        {isUpdating ? (
+          <span className="text-sm text-gray-500">Saving...</span>
+        ) : null}
       </div>
       {/* Body */}
       <div className="rounded-tl-[5px] rounded-tr-[5px] p-1">
