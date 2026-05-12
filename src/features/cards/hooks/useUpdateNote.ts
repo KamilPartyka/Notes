@@ -7,11 +7,11 @@ interface UseUpdateNoteProps {
   debouncedNote: Note;
   note: Note;
   updateNote: UseMutateFunction<Models.DefaultRow, Error, Note, unknown>;
+  setLocalNote: React.Dispatch<React.SetStateAction<Note>>;
   position: {
     x: number;
     y: number;
   };
-  setLocalNote: React.Dispatch<React.SetStateAction<Note>>;
 }
 
 /**
@@ -45,7 +45,6 @@ export const useUpdateNote = ({
 
     if (isCardChanged) {
       updateNote({
-        ...note,
         ...debouncedNote,
       });
     }
