@@ -1,6 +1,6 @@
-import { useAddCard } from '../hooks/useAddCard';
-import { NOTE_COLORS, NOTE_COLORS_KEYS } from '../constants/noteColors';
-import { AddCardButton } from './AddCardButton';
+import { NOTE_COLORS, NOTE_COLORS_KEYS } from '@sidebar//constants/noteColors';
+import { AddCardButton } from '@sidebar/components/AddCardButton';
+import { useAddCard } from '@sidebar/hooks/useAddCard';
 
 export const Menu = () => {
   const { addCard } = useAddCard();

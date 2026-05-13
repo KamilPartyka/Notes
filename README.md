@@ -8,7 +8,7 @@ A sleek note-taking playground built with:
 
 - **React 19** for the frontend
 - **Vite** for fast development and build
-- **Appwrite** for backend, auth, and  database storage
+- **Appwrite** for backend, auth, and database storage
 
 ## ✨ Key features
 

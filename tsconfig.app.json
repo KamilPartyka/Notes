@@ -19,7 +19,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@cards/*": ["src/features/cards/*"],
-      "@sidebar/*": ["src/features/sidebar/*"]
+      "@sidebar/*": ["src/features/sidebar/*"],
+      "@shared/*": ["src/shared/*"]
     },
 
     /* Linting */

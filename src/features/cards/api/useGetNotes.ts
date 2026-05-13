@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { tablesDB, DATABASE_ID, NOTES_TABLE_ID } from '@/appwrite';
 import { Query } from 'appwrite';
+import { DATABASE_ID, NOTES_TABLE_ID, tablesDB } from '@/appwrite';
 
 export interface Note {
   $id: string;
@@ -24,7 +24,10 @@ export const useGetNotes = () => {
       const response = await tablesDB.listRows({
         databaseId: DATABASE_ID,
         tableId: NOTES_TABLE_ID,
-        queries: [Query.equal('userId', import.meta.env.VITE_APPWRITE_MY_USER_ID)],
+        queries: [
+          // TODO: Replace with dynamic user ID from auth context
+          Query.equal('userId', import.meta.env.VITE_APPWRITE_MY_USER_ID),
+        ],
       });
 
       return response.rows;

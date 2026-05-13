@@ -1,7 +1,6 @@
 import { memo } from 'react';
-
-import type { Note } from '@/features/cards/api/useGetNotes';
-import { DeleteCardButton } from './DeleteCardButton';
+import type { Note } from '@cards/api/useGetNotes';
+import { DeleteCardButton } from '@cards/components/DeleteCardButton';
 
 interface NoteCardProps {
   note: Note;

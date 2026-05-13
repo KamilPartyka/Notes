@@ -1,12 +1,12 @@
 import { memo, useState } from 'react';
-import { useAutoGrow } from '@cards/hooks/useAutoGrow';
-import { usePosition } from '@cards/hooks/usePosition';
+import { useDebounce } from '@shared/hooks/useDebounce';
 import type { Note } from '@cards/api/useGetNotes';
-import { useDebounce } from '@/shared/hooks/useDebounce';
-import { useUpdateNoteMutation } from '@/features/cards/api/useUpdateNoteMutation';
-import { useUpdateNote } from '@/features/cards/hooks/useUpdateNote';
+import { useUpdateNoteMutation } from '@cards/api/useUpdateNoteMutation';
 import { NoteCard } from '@cards/components/NoteCard';
+import { useAutoGrow } from '@cards/hooks/useAutoGrow';
 import { useDeleteNote } from '@cards/hooks/useDeleteNote';
+import { usePosition } from '@cards/hooks/usePosition';
+import { useUpdateNote } from '@cards/hooks/useUpdateNote';
 
 interface NoteCardContainerProps {
   note: Note;

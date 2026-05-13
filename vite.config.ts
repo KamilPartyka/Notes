@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
-import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import path from 'path';
 import babel from '@rolldown/plugin-babel';
 import tailwindcss from '@tailwindcss/vite';
-import path from 'path';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,6 +11,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       '@cards': path.resolve(__dirname, 'src/features/cards'),
       '@sidebar': path.resolve(__dirname, 'src/features/sidebar'),
+      '@shared': path.resolve(__dirname, 'src/shared'),
     },
   },
   plugins: [

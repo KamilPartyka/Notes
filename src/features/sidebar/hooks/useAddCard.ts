@@ -1,6 +1,6 @@
-import { useCreateNoteMutation } from '@sidebar/api/useCreateNoteMutation';
 import { ID } from 'appwrite';
-import { NOTE_COLORS, type NoteColorKey } from '../constants/noteColors';
+import { useCreateNoteMutation } from '@sidebar/api/useCreateNoteMutation';
+import { NOTE_COLORS, type NoteColorKey } from '@sidebar/constants/noteColors';
 
 export const useAddCard = () => {
   const { mutate: createNote } = useCreateNoteMutation();

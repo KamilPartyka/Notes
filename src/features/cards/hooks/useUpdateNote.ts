@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import type { Note } from '../api/useGetNotes';
 import type { UseMutateFunction } from '@tanstack/react-query';
 import type { Models } from 'appwrite';
+import { useEffect } from 'react';
+import type { Note } from '@cards/api/useGetNotes';
 
 interface UseUpdateNoteProps {
   debouncedNote: Note;
