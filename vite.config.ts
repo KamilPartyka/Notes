@@ -10,6 +10,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@cards': path.resolve(__dirname, 'src/features/cards'),
+      '@sidebar': path.resolve(__dirname, 'src/features/sidebar'),
     },
   },
   plugins: [

@@ -1,6 +1,7 @@
 // import { useEffect } from 'react';
 // import { account } from './appwrite';
-import { NotesPage } from './pages/NotesPage';
+import { Menu } from '@sidebar/components/Menu';
+import { NotesPage } from '@/pages/NotesPage';
 
 export default function App() {
   // useEffect(() => {
@@ -19,6 +20,12 @@ export default function App() {
   //     import.meta.env.VITE_APPWRITE_LOGIN_PASSWORD
   //   );
   // }, []);
+  // TODO
 
-  return <NotesPage />;
+  return (
+    <>
+      <Menu />
+      <NotesPage />
+    </>
+  );
 }

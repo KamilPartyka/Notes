@@ -18,7 +18,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "@cards/*": ["src/features/cards/*"]
+      "@cards/*": ["src/features/cards/*"],
+      "@sidebar/*": ["src/features/sidebar/*"]
     },
 
     /* Linting */
