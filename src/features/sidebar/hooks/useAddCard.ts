@@ -13,8 +13,8 @@ export const useAddCard = () => {
       colorHeader: NOTE_COLORS[selectedColor].header,
       colorBody: NOTE_COLORS[selectedColor].body,
       colorText: NOTE_COLORS[selectedColor].text,
-      positionX: Math.floor(Math.random() * screen.width * 0.8), // Random position, but not too close to the right edge
-      positionY: Math.floor(Math.random() * screen.height * 0.8), // Random position, but not too close to the bottom edge
+      positionX: Math.floor(Math.random() * screen.width * 0.6), // Random position, but not too close to the right edge
+      positionY: Math.floor(Math.random() * screen.height * 0.6), // Random position, but not too close to the bottom edge
     });
   };
 

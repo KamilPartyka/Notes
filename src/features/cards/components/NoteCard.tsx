@@ -1,6 +1,7 @@
 import { memo } from 'react';
-import { Trash } from '@/shared/icons/Trash';
+
 import type { Note } from '@/features/cards/api/useGetNotes';
+import { DeleteCardButton } from './DeleteCardButton';
 
 interface NoteCardProps {
   note: Note;
@@ -12,6 +13,7 @@ interface NoteCardProps {
   onCardMouseDown: () => void;
   onBodyChange: (body: string) => void;
   onBodyInput: () => void;
+  onDelete: () => void;
   isUpdating: boolean;
   cardRef: React.RefObject<HTMLDivElement | null>;
 }
@@ -27,6 +29,7 @@ export const NoteCard = memo(
     onCardMouseDown,
     onBodyChange,
     onBodyInput,
+    onDelete,
     isUpdating,
     cardRef,
   }: NoteCardProps) => (
@@ -44,16 +47,17 @@ export const NoteCard = memo(
       {/* Header */}
       <div
         onMouseDown={onHeaderMouseDown}
-        className={`flex items-center justify-between rounded-tl-[5px] rounded-tr-[5px] p-1.5 ${
+        className={`flex items-center justify-between rounded-tl-[5px] rounded-tr-[5px] ${
           isDragging ? 'cursor-grabbing' : 'cursor-grab'
         }`}
         style={{ backgroundColor: note.colorHeader }}
       >
-        <Trash />
+        <DeleteCardButton onClick={onDelete} />
         {isUpdating ? (
           <span className="text-sm text-gray-500">Saving...</span>
         ) : null}
       </div>
+
       {/* Body */}
       <div className="rounded-tl-[5px] rounded-tr-[5px] p-1">
         <textarea

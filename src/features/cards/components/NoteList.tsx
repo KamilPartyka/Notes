@@ -1,6 +1,6 @@
 import { useLayering } from '@cards/hooks/useLayering';
-import { NoteCardContainer } from './NoteCardContainer';
-import type { Note } from '../api/useGetNotes';
+import { NoteCardContainer } from '@cards/components/NoteCardContainer';
+import type { Note } from '@cards/api/useGetNotes';
 
 interface NotesListProps {
   data: Note[];

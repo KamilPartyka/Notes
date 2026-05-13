@@ -1,11 +1,12 @@
 import { memo, useState } from 'react';
 import { useAutoGrow } from '@cards/hooks/useAutoGrow';
 import { usePosition } from '@cards/hooks/usePosition';
-import type { Note } from '@/features/cards/api/useGetNotes';
+import type { Note } from '@cards/api/useGetNotes';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { useUpdateNoteMutation } from '@/features/cards/api/useUpdateNoteMutation';
 import { useUpdateNote } from '@/features/cards/hooks/useUpdateNote';
-import { NoteCard } from './NoteCard';
+import { NoteCard } from '@cards/components/NoteCard';
+import { useDeleteNote } from '@cards/hooks/useDeleteNote';
 
 interface NoteCardContainerProps {
   note: Note;
@@ -28,6 +29,7 @@ export const NoteCardContainer = memo(
     const debouncedNote = useDebounce(localNote, 600);
     const { mutate: updateNote, isPending: isUpdating } =
       useUpdateNoteMutation();
+    const { handleDeleteNote } = useDeleteNote();
     const { autoGrow, textAreaRef } = useAutoGrow();
     const { position, cardRef, handleMouseDown, isDragging } = usePosition({
       initialPosition,
@@ -48,6 +50,7 @@ export const NoteCardContainer = memo(
         onBodyInput={autoGrow}
         cardRef={cardRef}
         isUpdating={isUpdating}
+        onDelete={() => handleDeleteNote(note.$id)}
       />
     );
   }
