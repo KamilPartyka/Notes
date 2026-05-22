@@ -9,6 +9,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      '@login': path.resolve(__dirname, 'src/features/login'),
       '@cards': path.resolve(__dirname, 'src/features/cards'),
       '@sidebar': path.resolve(__dirname, 'src/features/sidebar'),
       '@shared': path.resolve(__dirname, 'src/shared'),

@@ -15,23 +15,19 @@ export interface Note {
 
 export const USE_GET_NOTES_QUERY_KEY = 'GET_NOTES' as const;
 
-export const useGetNotes = () => {
+export const useGetNotes = ({ userId }: { userId: string }) => {
   return useQuery({
     queryKey: [USE_GET_NOTES_QUERY_KEY],
     queryFn: async () => {
-      // const user = await account.get();
-
       const response = await tablesDB.listRows({
         databaseId: DATABASE_ID,
         tableId: NOTES_TABLE_ID,
-        queries: [
-          // TODO: Replace with dynamic user ID from auth context
-          Query.equal('userId', import.meta.env.VITE_APPWRITE_MY_USER_ID),
-        ],
+        queries: [Query.equal('userId', userId)],
       });
 
       return response.rows;
     },
     select: (data) => data.map((row) => ({ ...row, ...row.data })) as Note[],
+    enabled: !!userId,
   });
 };

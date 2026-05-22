@@ -1,8 +1,13 @@
+import { useAuth } from '@shared/hooks/useAuth';
 import { useGetNotes } from '@/features/cards/api/useGetNotes';
 import { NotesList } from '@/features/cards/components/NoteList';
+import { Menu } from '@/features/sidebar/components/Menu';
 
 export const NotesPage = () => {
-  const { data, isPending, isError } = useGetNotes();
+  const { user } = useAuth();
+  const { data, isPending, isError } = useGetNotes({
+    userId: user?.$id || '',
+  });
 
   if (isPending)
     return (
@@ -18,5 +23,10 @@ export const NotesPage = () => {
       </div>
     );
 
-  return <NotesList data={data} />;
+  return (
+    <>
+      <Menu />
+      <NotesList data={data} />
+    </>
+  );
 };
