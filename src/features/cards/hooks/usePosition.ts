@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { SIDEBAR_WIDTH } from '@/features/sidebar/constants/sidebarWidth';
 
 interface UsePositionProps {
   initialPosition: { x: number; y: number };
@@ -35,7 +36,7 @@ export const usePosition = ({ initialPosition }: UsePositionProps) => {
 
       // Don't allow dragging outside of the viewport
       const newPosition = {
-        x: Math.max(0, mouseStartingPoint.x - offset.x),
+        x: Math.max(SIDEBAR_WIDTH, mouseStartingPoint.x - offset.x),
         y: Math.max(0, mouseStartingPoint.y - offset.y),
       };
 
