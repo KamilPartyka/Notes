@@ -1,11 +1,17 @@
-import { useEffect } from 'react';
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  type Dispatch,
+  type SetStateAction,
+} from 'react';
 import type { NoteModel } from '@/shared/types/noteModel';
 
 interface UseUpdateNoteProps {
   debouncedNote: NoteModel;
   note: NoteModel;
   updateNote: (note: NoteModel) => void;
-  setLocalNote: React.Dispatch<React.SetStateAction<NoteModel>>;
+  setLocalNote: Dispatch<SetStateAction<NoteModel>>;
   position: { x: number; y: number };
 }
 
@@ -16,9 +22,14 @@ export const useUpdateNote = ({
   setLocalNote,
   updateNote,
 }: UseUpdateNoteProps) => {
+  const updateNoteRef = useRef(updateNote);
+  useLayoutEffect(() => {
+    updateNoteRef.current = updateNote;
+  });
+
   useEffect(() => {
-    setLocalNote((prevLocalNote) => ({
-      ...prevLocalNote,
+    setLocalNote((prev) => ({
+      ...prev,
       positionX: position.x,
       positionY: position.y,
     }));
@@ -34,7 +45,7 @@ export const useUpdateNote = ({
       debouncedNote.positionY !== note.positionY;
 
     if (isCardChanged) {
-      updateNote({ ...debouncedNote });
+      updateNoteRef.current({ ...debouncedNote });
     }
-  }, [debouncedNote, note, updateNote]);
+  }, [debouncedNote, note]);
 };
