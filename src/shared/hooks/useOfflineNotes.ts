@@ -8,10 +8,13 @@ export type OfflineNotesValue = {
   deleteNote: (id: string) => void;
 };
 
-export const OfflineNotesContext = createContext<OfflineNotesValue | null>(null);
+export const OfflineNotesContext = createContext<OfflineNotesValue | null>(
+  null
+);
 
 export const useOfflineNotes = (): OfflineNotesValue => {
   const ctx = useContext(OfflineNotesContext);
-  if (!ctx) throw new Error('useOfflineNotes must be used inside OfflineNotesProvider');
+  if (!ctx)
+    throw new Error('useOfflineNotes must be used inside OfflineNotesProvider');
   return ctx;
 };

@@ -1,5 +1,5 @@
-import { useNotesService } from '@/shared/hooks/useNotesService';
 import { NOTE_COLORS, type NoteColorKey } from '@sidebar/constants/noteColors';
+import { useNotesService } from '@/shared/hooks/useNotesService';
 
 export const useAddCard = () => {
   const svc = useNotesService();

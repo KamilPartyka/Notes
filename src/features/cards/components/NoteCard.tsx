@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import type { NoteModel } from '@/shared/types/noteModel';
 import { DeleteCardButton } from '@cards/components/DeleteCardButton';
+import type { NoteModel } from '@/shared/types/noteModel';
 
 interface NoteCardProps {
   note: NoteModel;

@@ -1,13 +1,15 @@
-import type { NoteModel } from '@/shared/types/noteModel';
 import { NoteCardContainer } from '@cards/components/NoteCardContainer';
 import { useLayering } from '@cards/hooks/useLayering';
+import type { NoteModel } from '@/shared/types/noteModel';
 
 interface NotesListProps {
   data: NoteModel[];
 }
 
 export const NotesList = ({ data }: NotesListProps) => {
-  const { zIndexById, bringToFront } = useLayering<string>(data.map((note) => note.id));
+  const { zIndexById, bringToFront } = useLayering<string>(
+    data.map((note) => note.id)
+  );
 
   return (
     <div>

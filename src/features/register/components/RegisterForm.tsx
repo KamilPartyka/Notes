@@ -58,7 +58,12 @@ export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
         Zarejestruj
       </button>
 
-      <p className="text-sm text-gray-600 mt-2">Masz już konto? <Link to="/login" className="text-indigo-600 hover:underline">Zaloguj się</Link></p>
+      <p className="text-sm text-gray-600 mt-2">
+        Masz już konto?{' '}
+        <Link to="/login" className="text-indigo-600 hover:underline">
+          Zaloguj się
+        </Link>
+      </p>
     </form>
   );
 };

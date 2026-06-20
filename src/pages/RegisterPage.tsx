@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router';
-import { RegisterForm, type RegisterFormData } from '@/features/register/components/RegisterForm';
+import {
+  RegisterForm,
+  type RegisterFormData,
+} from '@/features/register/components/RegisterForm';
 
 export const RegisterPage = () => {
   const navigate = useNavigate();

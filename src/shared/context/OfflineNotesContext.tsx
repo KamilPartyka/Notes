@@ -7,9 +7,13 @@ const STORAGE_KEY = 'offline_notes_v1';
 const generateId = () =>
   `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
 
-export const OfflineNotesProvider: React.FC<{ children: React.ReactNode }> = ({
+interface OfflineNotesProviderProps {
+  children: React.ReactNode;
+}
+
+export const OfflineNotesProvider = ({
   children,
-}) => {
+}: OfflineNotesProviderProps) => {
   const [notes, setNotes] = useState<NoteModel[]>(() => {
     const raw = localStorage.getItem(STORAGE_KEY);
     return raw ? JSON.parse(raw) : [];

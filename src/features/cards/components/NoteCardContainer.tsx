@@ -1,11 +1,11 @@
 import { memo, useState } from 'react';
 import { useDebounce } from '@shared/hooks/useDebounce';
-import type { NoteModel } from '@/shared/types/noteModel';
 import { NoteCard } from '@cards/components/NoteCard';
 import { useAutoGrow } from '@cards/hooks/useAutoGrow';
 import { usePosition } from '@cards/hooks/usePosition';
 import { useUpdateNote } from '@cards/hooks/useUpdateNote';
 import { useNotesService } from '@/shared/hooks/useNotesService';
+import type { NoteModel } from '@/shared/types/noteModel';
 
 interface NoteCardContainerProps {
   note: NoteModel;
@@ -26,7 +26,13 @@ export const NoteCardContainer = memo(
       initialPosition,
     });
 
-    useUpdateNote({ debouncedNote, note, updateNote: svc.update, setLocalNote, position });
+    useUpdateNote({
+      debouncedNote,
+      note,
+      updateNote: svc.update,
+      setLocalNote,
+      position,
+    });
 
     return (
       <NoteCard

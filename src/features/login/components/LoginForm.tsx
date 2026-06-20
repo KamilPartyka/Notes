@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import type { LoginFormData } from '../api/useLogin';
 import { Link } from 'react-router';
+import type { LoginFormData } from '../api/useLogin';
 
 interface LoginFormProps {
   onSubmit: (data: LoginFormData) => void;
@@ -39,7 +39,12 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
         Zaloguj
       </button>
 
-      <p className="text-sm text-gray-600 mt-2">Nie masz konta? <Link to="/register" className="text-blue-600 hover:underline">Zarejestruj się</Link></p>
+      <p className="text-sm text-gray-600 mt-2">
+        Nie masz konta?{' '}
+        <Link to="/register" className="text-blue-600 hover:underline">
+          Zarejestruj się
+        </Link>
+      </p>
     </form>
   );
 };
