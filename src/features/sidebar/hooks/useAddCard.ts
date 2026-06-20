@@ -1,20 +1,17 @@
-import { ID } from 'appwrite';
-import { useCreateNoteMutation } from '@sidebar/api/useCreateNoteMutation';
+import { useNotesService } from '@/shared/hooks/useNotesService';
 import { NOTE_COLORS, type NoteColorKey } from '@sidebar/constants/noteColors';
 
 export const useAddCard = () => {
-  const { mutate: createNote } = useCreateNoteMutation();
+  const svc = useNotesService();
 
   const addCard = (selectedColor: NoteColorKey) => {
-    createNote({
-      $id: ID.unique(),
-      userId: import.meta.env.VITE_APPWRITE_MY_USER_ID, // TODO
+    svc.create({
       body: 'New note',
       colorHeader: NOTE_COLORS[selectedColor].header,
       colorBody: NOTE_COLORS[selectedColor].body,
       colorText: NOTE_COLORS[selectedColor].text,
-      positionX: Math.floor(Math.random() * screen.width * 0.6), // Random position, but not too close to the right edge
-      positionY: Math.floor(Math.random() * screen.height * 0.6), // Random position, but not too close to the bottom edge
+      positionX: Math.floor(Math.random() * window.innerWidth * 0.6),
+      positionY: Math.floor(Math.random() * window.innerHeight * 0.6),
     });
   };
 

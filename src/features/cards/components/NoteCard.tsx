@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import type { Note } from '@cards/api/useGetNotes';
+import type { NoteModel } from '@/shared/types/noteModel';
 import { DeleteCardButton } from '@cards/components/DeleteCardButton';
 
 interface NoteCardProps {
-  note: Note;
+  note: NoteModel;
   position: { x: number; y: number };
   isDragging: boolean;
   zIndex: number;

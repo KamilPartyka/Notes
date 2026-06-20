@@ -1,24 +1,14 @@
-import type { UseMutateFunction } from '@tanstack/react-query';
-import type { Models } from 'appwrite';
 import { useEffect } from 'react';
-import type { Note } from '@cards/api/useGetNotes';
+import type { NoteModel } from '@/shared/types/noteModel';
 
 interface UseUpdateNoteProps {
-  debouncedNote: Note;
-  note: Note;
-  updateNote: UseMutateFunction<Models.DefaultRow, Error, Note, unknown>;
-  setLocalNote: React.Dispatch<React.SetStateAction<Note>>;
-  position: {
-    x: number;
-    y: number;
-  };
+  debouncedNote: NoteModel;
+  note: NoteModel;
+  updateNote: (note: NoteModel) => void;
+  setLocalNote: React.Dispatch<React.SetStateAction<NoteModel>>;
+  position: { x: number; y: number };
 }
 
-/**
- * This hook is responsible for updating the note in the database when the
- * debouncedNote changes. It also updates the localNote's position when the
- * position changes.
- */
 export const useUpdateNote = ({
   debouncedNote,
   note,
@@ -44,9 +34,7 @@ export const useUpdateNote = ({
       debouncedNote.positionY !== note.positionY;
 
     if (isCardChanged) {
-      updateNote({
-        ...debouncedNote,
-      });
+      updateNote({ ...debouncedNote });
     }
   }, [debouncedNote, note, updateNote]);
 };
