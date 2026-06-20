@@ -21,6 +21,7 @@
       "@login/*": ["src/features/login/*"],
       "@cards/*": ["src/features/cards/*"],
       "@sidebar/*": ["src/features/sidebar/*"],
+      "@register/*": ["src/features/register/*"],
       "@shared/*": ["src/shared/*"]
     },
 

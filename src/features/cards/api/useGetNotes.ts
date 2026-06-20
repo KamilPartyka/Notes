@@ -1,9 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
-import { Query } from 'appwrite';
+import { Query, type Models } from 'appwrite';
 import { DATABASE_ID, NOTES_TABLE_ID, tablesDB } from '@/appwrite';
-import type { NoteModel } from '@/shared/types/noteModel';
 
 export const USE_GET_NOTES_QUERY_KEY = 'GET_NOTES' as const;
+
+export const getNotesQueryKey = (userId: string) =>
+  [USE_GET_NOTES_QUERY_KEY, userId] as const;
+
+const mapRowToNoteModel = (row: Models.DefaultRow) => ({
+  id: row.$id,
+  body: row.body as string,
+  colorHeader: row.colorHeader as string,
+  colorBody: row.colorBody as string,
+  colorText: row.colorText as string,
+  positionX: row.positionX as number,
+  positionY: row.positionY as number,
+});
 
 export const useGetNotes = ({
   userId,
@@ -13,7 +25,7 @@ export const useGetNotes = ({
   enabled?: boolean;
 }) => {
   return useQuery({
-    queryKey: [USE_GET_NOTES_QUERY_KEY],
+    queryKey: getNotesQueryKey(userId),
     queryFn: async () => {
       const response = await tablesDB.listRows({
         databaseId: DATABASE_ID,
@@ -22,16 +34,8 @@ export const useGetNotes = ({
       });
       return response.rows;
     },
-    select: (data) =>
-      data.map((row) => ({
-        id: row.$id,
-        body: row.body as string,
-        colorHeader: row.colorHeader as string,
-        colorBody: row.colorBody as string,
-        colorText: row.colorText as string,
-        positionX: row.positionX as number,
-        positionY: row.positionY as number,
-      })) as NoteModel[],
+    select: (data) => data.map(mapRowToNoteModel),
+
     enabled: !!userId && enabled,
   });
 };

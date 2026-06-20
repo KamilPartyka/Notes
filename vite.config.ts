@@ -12,6 +12,7 @@ export default defineConfig({
       '@login': path.resolve(__dirname, 'src/features/login'),
       '@cards': path.resolve(__dirname, 'src/features/cards'),
       '@sidebar': path.resolve(__dirname, 'src/features/sidebar'),
+      '@register': path.resolve(__dirname, 'src/features/register'),
       '@shared': path.resolve(__dirname, 'src/shared'),
     },
   },

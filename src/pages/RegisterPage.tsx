@@ -1,16 +1,15 @@
-import { useNavigate } from 'react-router';
 import {
   RegisterForm,
   type RegisterFormData,
-} from '@/features/register/components/RegisterForm';
+} from '@register/components/RegisterForm';
+import { useNavigate } from 'react-router';
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data: RegisterFormData) => {
-    // Placeholder: tutaj można podłączyć rzeczywiste API rejestracji.
     console.log('Register:', data);
-    // Po rejestracji przejdź do logowania
+
     navigate('/login');
   };
 

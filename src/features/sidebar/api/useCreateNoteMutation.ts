@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { USE_GET_NOTES_QUERY_KEY } from '@cards/api/useGetNotes';
+import { getNotesQueryKey } from '@cards/api/useGetNotes';
 import { DATABASE_ID, NOTES_TABLE_ID, tablesDB } from '@/appwrite';
 import type { NoteModel } from '@/shared/types/noteModel';
 
@@ -26,8 +26,8 @@ export const useCreateNoteMutation = () => {
       });
       return response;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [USE_GET_NOTES_QUERY_KEY] });
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: getNotesQueryKey(variables.userId) });
     },
   });
 };

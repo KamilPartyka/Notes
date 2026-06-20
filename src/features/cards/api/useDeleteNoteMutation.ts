@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { USE_GET_NOTES_QUERY_KEY } from '@cards/api/useGetNotes';
+import { getNotesQueryKey } from '@cards/api/useGetNotes';
 import { DATABASE_ID, NOTES_TABLE_ID, tablesDB } from '@/appwrite';
+import { useAuth } from '@/shared/hooks/useAuth';
 
 interface DeleteNoteVariables {
   id: string;
@@ -8,6 +9,7 @@ interface DeleteNoteVariables {
 
 export const useDeleteNoteMutation = () => {
   const queryClient = useQueryClient();
+  const { user } = useAuth();
 
   return useMutation({
     mutationFn: async ({ id }: DeleteNoteVariables) => {
@@ -20,7 +22,7 @@ export const useDeleteNoteMutation = () => {
       return response;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [USE_GET_NOTES_QUERY_KEY] });
+      if (user) queryClient.invalidateQueries({ queryKey: getNotesQueryKey(user.$id) });
     },
   });
 };
